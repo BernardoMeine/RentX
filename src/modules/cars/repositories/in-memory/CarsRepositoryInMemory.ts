@@ -37,6 +37,12 @@ class CarsRepositoryInMemory implements ICarsRepository {
 
     return car;
   }
+
+  async findAvailable(): Promise<Car[]> {
+    const all = this.cars.filter(car => car.available === true);
+    return all;
+  }
+
 }
 
 export { CarsRepositoryInMemory }
