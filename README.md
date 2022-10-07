@@ -25,12 +25,10 @@
 
  **FR**
  It should be possible to register an specification for a car.
- It should be possible to list all the specifications.
- It should be possible to list all the cars.
 
  **BR**
- It should be possible to register a specification for a non-registered car.
- It should no be possible to register the same specification twice for the same car.
+ It should not be possible to register a specification for a non-registered car.
+ It should not be possible to register the same specification twice for the same car.
  The user responsible for the registration must be an admin user.
 
 
