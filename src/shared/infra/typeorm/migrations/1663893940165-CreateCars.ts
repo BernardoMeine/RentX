@@ -35,15 +35,15 @@ export class CreateCars1663893940165 implements MigrationInterface {
           },
           {
             name: "fine_amount",
-            type:"numeric"
+            type: "numeric"
           },
           {
             name: "brand",
-            type:"varchar"
+            type: "varchar"
           },
           {
             name: "category_id",
-            type:"uuid",
+            type: "uuid",
             isNullable: true
           },
           {
