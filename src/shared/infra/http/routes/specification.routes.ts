@@ -10,8 +10,8 @@ const createSpecificationController = new CreateSpecificationController()
 
 routesSpecification.post(
   '/', 
-  ensureAuthenticated, 
-  ensureAdmin,
+  // ensureAuthenticated
+  // ensureAdmin
   createSpecificationController.handle
   );
 

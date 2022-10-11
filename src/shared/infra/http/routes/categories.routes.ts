@@ -20,9 +20,9 @@ const importCategoryController = new ImportCategoryController();
 const listCategoriesController = new ListCategoriesController();
 
 routesCategories.post(
-  '/',
-  ensureAuthenticated, 
-  ensureAdmin, 
+  '/', 
+  // ensureAuthenticated
+  // ensureAdmin
   createCategoryController.handle
   );
 
