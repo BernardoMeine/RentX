@@ -12,6 +12,7 @@ import { ensureAuthenticated } from '@shared/infra/http/middlewares/ensureAuthen
 const routesCar = Router();
 import uploadConfig from '@config/upload'
 import multer from 'multer';
+import { deleteFile } from '@utils/file';
 
 const createCarController = new CreateCarController();
 const listAvailableCarsController = new ListAvailableCarsController();
@@ -42,7 +43,6 @@ routesCar.post(
   upload.array("images"),
   uploadCarImagesControler.handle
 )
-
 
 
 export { routesCar }
