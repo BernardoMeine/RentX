@@ -1,18 +1,24 @@
 import { Router } from "express";
 
 import { CreateRentalController } from "@modules/rentals/useCases/createRental/CreateRentalController";
-import { ensureAdmin } from "../middlewares/ensureAdmin";
 import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
+import { DevolutionRentalController } from "@modules/rentals/useCases/devolutionRental/DevolutionRentalController";
 
 
 const routesRental = Router()
 
 const createRentalController = new CreateRentalController();
+const devolutionRentalController = new DevolutionRentalController();
+
 
 routesRental.post(
-  "/:id", // não deveria ser o id no req.params, mas enquanto tu não arrumar os middlewares vai seguir assim
-  // ensureAdmin,
-  // ensureAuthenticated,
+  "/",
+  ensureAuthenticated,
   createRentalController.handle);
+
+routesRental.post(
+  "/devolution/:id",
+  ensureAuthenticated,
+  devolutionRentalController.handle);
 
 export { routesRental }

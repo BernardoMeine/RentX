@@ -23,8 +23,8 @@ const upload = multer(uploadConfig.upload("./tmp/cars"))
 
 routesCar.post(
   '/',
-  // ensureAuthenticated
-  // ensureAdmin
+  ensureAuthenticated,
+  ensureAdmin,
   createCarController.handle
   );
 
@@ -32,14 +32,14 @@ routesCar.get('/available', listAvailableCarsController.handle);
 
 routesCar.post(
   '/specifications/:id',
-  // ensureAuthenticated
-  // ensureAdmin
+  ensureAuthenticated,
+  ensureAdmin,
   createCarSpecificationController.handle);
 
 routesCar.post(
   '/images/:id',
-  // ensureAuthenticated
-  // ensureAdmin
+  ensureAuthenticated,
+  ensureAdmin,
   upload.array("images"),
   uploadCarImagesControler.handle
 )

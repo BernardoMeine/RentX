@@ -54,3 +54,25 @@
  The rental should last at least 24 hours.
  It should no be possible to register a new rental in case there is one open for the same user.
  It should no be possible to register a new rental in case there is one open for the same car.
+ When making a rental, the car status must be changed to unavailable.
+
+ # Car return
+
+ **FR**
+ It should be possible to return a car
+
+ **BR**
+ If the car is returned in less than 24 hours, it should be charged for the full rent.
+ At the moment of the return, the car should be available immediatly for another rent.
+ At the moment of the return, it should be possible for the user to rent another car.
+ At the moment of the return, it should be possible to calculate the total amount.
+ In case the car is returned later than the time hired, it should be charged a penalty for the amount of time
+ In case the penalty is high(?), it should be charged together with the total amount.
+
+ # Listing rents for the user
+
+ **FR**
+ It show be possible to search all the rents for the user.
+
+ **BR**
+ The user must be logged in the application.
