@@ -1,35 +1,42 @@
 {
-  "openapi":"3.0.0",
+  "openapi": "3.0.0",
   "info": {
-    "title":"RentX Documentation",
-    "description":"This is an car rental API documentation",
-    "version":"1.0.0",
+    "title": "RentX Documentation",
+    "description": "This is an car rental API documentation",
+    "version": "1.0.0",
     "contact": {
-      "email":"bemeine15@hotmail.com"
+      "email": "bemeine15@hotmail.com"
     }
   },
   "paths": {
-    "/categories":{
-      "post":{
-        "tags":["Category"],
-        "summary":"Create a category",
-        "description":"Create a new category",
+    "/categories": {
+      "post": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "Create a category",
+        "description": "Create a new category",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "type":"object",
+                "type": "object",
                 "properties": {
                   "name": {
-                   "type":"string"
+                    "type": "string"
                   },
-                 "description": {
-                   "type":"string"
-                 }
-               },
-               "example": {
-                 "name":"category name sample",
-                 "description":"category description sample"
+                  "description": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "category name sample",
+                  "description": "category description sample"
                 }
               }
             }
@@ -37,32 +44,34 @@
         },
         "responses": {
           "201": {
-            "description":"Created"
+            "description": "Created"
           },
           "500": {
-            "description":"Category Already Exists"
+            "description": "Category Already Exists"
           }
         }
       },
       "get": {
-        "tags": ["Category"],
+        "tags": [
+          "Category"
+        ],
         "summary": "List all categories",
-        "description":"List all categories",
+        "description": "List all categories",
         "responses": {
           "200": {
-            "description":"Success",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
-                  "type":"array",
+                  "type": "array",
                   "items": {
-                    "type":"object",
+                    "type": "object",
                     "properties": {
                       "name": {
-                        "type":"string"
+                        "type": "string"
                       },
                       "description": {
-                        "type":"string"
+                        "type": "string"
                       }
                     }
                   }
@@ -75,66 +84,113 @@
     },
     "/categories/import": {
       "post": {
-        "tags":["Category"],
-        "summary":"Upload a new category",
-        "description":"Upload a new category",
-        "requestBody":{
-          "content":{
-            "multipart/form-data":{
-              "schema":{
-                "type":"object",
-                "properties":{
-                  "file":{
-                    "type":"string",
-                    "format":"binary"
+        "tags": [
+          "Category"
+        ],
+        "summary": "Upload a new category",
+        "description": "Upload a new category",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
                   }
                 }
               }
             }
           }
         },
-        "responses":{
+        "responses": {
           "201": {
-            "description":"Uploaded"
+            "description": "Uploaded"
           }
         }
       }
     },
-    "/specifications":{
-      "post":{
-        "tags":["Specification"],
-        "summary":"Create a specification",
-        "description":"Create a new specification",
-        "requestBody":{
-          "content":{
-            "application/json":{
-              "schema":{
-                "$ref":"#/definitions/Specification"
+    "/specifications": {
+      "post": {
+        "tags": [
+          "Specification"
+        ],
+        "summary": "Create a specification",
+        "description": "Create a new specification",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Specification"
               }
             }
           }
         },
-        "responses":{
-          "201":{
-            "description":"Created"
+        "responses": {
+          "201": {
+            "description": "Created"
           },
-          "500":{
-            "description":"Specification already exists!"
+          "500": {
+            "description": "Specification already exists!"
+          }
+        }
+      }
+    },
+    "/sessions": {
+      "post": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "User authentication",
+        "description": "User authentication",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Succes"
+          },
+          "400": {
+            "description": "Email our password incorret!"
           }
         }
       }
     }
   },
-  "definitions":{
-    "Specification":{
-      "type":"object",
-      "properties":{
-        "name":{
-          "type":"string"
+  "definitions": {
+    "Specification": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
         },
-        "description":{
-          "type":"string"
+        "description": {
+          "type": "string"
         }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }
