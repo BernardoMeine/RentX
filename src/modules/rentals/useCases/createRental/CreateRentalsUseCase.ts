@@ -27,32 +27,32 @@ class CreateRentalUseCase {
 
     @inject("CarsRepository")
     private carsRepository: ICarsRepository,
-  ) {}
+  ) { }
 
-  async execute({ 
-    user_id, 
-    car_id, 
+  async execute({
+    user_id,
+    car_id,
     expected_return_date,
-  }: IRequest):Promise<Rental> {
+  }: IRequest): Promise<Rental> {
     const minRentTime = 24
 
     const carUnavailable = await this.rentalsRepository.findOpenRentalByCar(car_id);
 
-    if(carUnavailable) {
+    if (carUnavailable) {
       throw new AppError("Car is unvailable");
     }
 
     const rentalOpenToUser = await this.rentalsRepository.findOpenRentalByUser(user_id);
 
-    if(rentalOpenToUser) {
-      throw new AppError("There is a rental in progress for the user!")
+    if (rentalOpenToUser) {
+      throw new AppError("There's a rental in progress for the user!")
     }
 
     const dateNow = this.dateProvider.dateNow();
 
     const compare = this.dateProvider.compareInHours(dateNow, expected_return_date)
 
-    if(compare < minRentTime){
+    if (compare < minRentTime) {
       throw new AppError("The rental must last at least 24 hours")
     }
 

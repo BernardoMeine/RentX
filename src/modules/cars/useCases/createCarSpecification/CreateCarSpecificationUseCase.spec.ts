@@ -16,34 +16,34 @@ describe('Create Car Specification', () => {
   })
 
   it("should not be able to add the same specification twice to the same car", async () => {
-    expect(async () => {
-      const car_id = "1234";
-      const specifications_id = ["54321"];
 
-      await createCarSpecificationUseCase.execute({car_id, specifications_id});
-    }).rejects.toBeInstanceOf(AppError);
-  });
+    const car_id = "1234";
+    const specifications_id = ["54321"]
+
+    await expect(createCarSpecificationUseCase.execute({ car_id, specifications_id })
+    ).rejects.toEqual(new AppError("Car does not exists!"))
+  })
 
   it("should be able to add a new specification to a car", async () => {
     const car = await carsRepositoryInMemory.create({
-      name: "testName", 
-      description:"testDesc",
+      name: "testName",
+      description: "testDesc",
       daily_rate: 1,
       license_plate: "testLicPla",
-      fine_amount: 1, 
-      brand:"testBrand",
-      category_id:"testCatId"
+      fine_amount: 1,
+      brand: "testBrand",
+      category_id: "testCatId"
     });
 
     const specification = await specificationsRepositoryInMemory.create({
-      name:"specTest",
-      description:"descTest"
+      name: "specTest",
+      description: "descTest"
     })
 
     const specifications_id = [specification.id];
 
-    const specficiationsCar =await createCarSpecificationUseCase.execute({
-      car_id: car.id, 
+    const specficiationsCar = await createCarSpecificationUseCase.execute({
+      car_id: car.id,
       specifications_id
     });
 

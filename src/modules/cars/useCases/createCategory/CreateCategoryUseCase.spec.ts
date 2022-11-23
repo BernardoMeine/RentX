@@ -11,7 +11,7 @@ describe("Create Category", () => {
     categoriesRepositoryInMemory = new CategoriesRepositoryInMemory();
     createCategoryUseCase = new CreateCategoryUseCase(categoriesRepositoryInMemory);
   })
-  
+
   it("should be able to create a new category", async () => {
     const category = {
       name: "Category test",
@@ -24,13 +24,13 @@ describe("Create Category", () => {
 
     const categoryCreated = await categoriesRepositoryInMemory.findByName(
       category.name
-      );
+    );
 
     expect(categoryCreated).toHaveProperty("id");
   });
 
   it("should not be able to create a new category with the same name", async () => {
-   expect( async () => {
+
     const category = {
       name: "Category test",
       description: "Category description test"
@@ -41,11 +41,11 @@ describe("Create Category", () => {
       description: category.description
     });
 
-    await createCategoryUseCase.execute({
+    await expect(createCategoryUseCase.execute({
       name: category.name,
-      description: category.description
-    });
-   }).rejects.toBeInstanceOf(AppError);
+      description: category.description,
+    })
+    ).rejects.toEqual(new AppError("Category already exists"));
 
   });
 })
