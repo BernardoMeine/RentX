@@ -76,3 +76,14 @@
 
  **BR**
  The user must be logged in the application.
+
+ # Password recovery
+
+ **FR**
+ It should be possilable to recover the password informing the email.
+ The user should receibe an email with a step-by-step password recovery process.
+ The user should be able to insert a new password.
+
+ **BR**
+ The user must inform a new password.
+ The link sent for the password recovery must expire in 3 hours.
