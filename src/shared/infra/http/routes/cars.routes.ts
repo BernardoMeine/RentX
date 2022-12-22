@@ -12,21 +12,20 @@ import { ensureAuthenticated } from '@shared/infra/http/middlewares/ensureAuthen
 const routesCar = Router();
 import uploadConfig from '@config/upload'
 import multer from 'multer';
-import { deleteFile } from '@utils/file';
 
 const createCarController = new CreateCarController();
 const listAvailableCarsController = new ListAvailableCarsController();
 const createCarSpecificationController = new CreateCarSpecificationController();
 const uploadCarImagesControler = new UploadCarImagesController();
 
-const upload = multer(uploadConfig.upload("./tmp/cars"))
+const upload = multer(uploadConfig)
 
 routesCar.post(
   '/',
   ensureAuthenticated,
   ensureAdmin,
   createCarController.handle
-  );
+);
 
 routesCar.get('/available', listAvailableCarsController.handle);
 

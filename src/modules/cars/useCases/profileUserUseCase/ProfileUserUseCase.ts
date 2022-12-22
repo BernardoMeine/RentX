@@ -1,0 +1,8 @@
+
+
+
+class ProfileUserUseCase {
+
+}
+
+export { ProfileUserUseCase } 

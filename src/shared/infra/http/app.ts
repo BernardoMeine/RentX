@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import "dotenv/config";
 import express from 'express';
 import { Request, Response, NextFunction } from 'express';
 import 'express-async-errors'
@@ -22,7 +23,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use(router);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  if(err instanceof AppError) {
+  if (err instanceof AppError) {
     return res.status(err.statusCode).json({
       message: err.message
     })

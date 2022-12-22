@@ -35,7 +35,7 @@ describe("Send Forgot Mail", () => {
     expect(sendMail).toHaveBeenCalled();
   });
 
-  it("should not be able to send an email if the user not exists", async () => {
+  it("should not be able to send an email if the user don't exists", async () => {
     await expect(
       sendForgotPasswordMailUseCase.execute("kai@ju.br")
     ).rejects.toEqual(new AppError("User does not exists!"))
