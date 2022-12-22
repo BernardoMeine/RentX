@@ -11,6 +11,8 @@ class ProfileUserUseCase {
 
   async execute(id: string): Promise<User> {
     const userId = await this.usersRepository.findById(id);
+
+    return userId
   }
 }
 
