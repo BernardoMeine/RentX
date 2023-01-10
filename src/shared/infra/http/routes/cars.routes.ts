@@ -9,7 +9,7 @@ import { ensureAdmin } from '@shared/infra/http/middlewares/ensureAdmin';
 import { ensureAuthenticated } from '@shared/infra/http/middlewares/ensureAuthenticated';
 
 
-const routesCar = Router();
+const carRoutes = Router();
 import uploadConfig from '@config/upload'
 import multer from 'multer';
 
@@ -20,22 +20,22 @@ const uploadCarImagesControler = new UploadCarImagesController();
 
 const upload = multer(uploadConfig)
 
-routesCar.post(
+carRoutes.post(
   '/',
   ensureAuthenticated,
   ensureAdmin,
   createCarController.handle
 );
 
-routesCar.get('/available', listAvailableCarsController.handle);
+carRoutes.get('/available', listAvailableCarsController.handle);
 
-routesCar.post(
+carRoutes.post(
   '/specifications/:id',
   ensureAuthenticated,
   ensureAdmin,
   createCarSpecificationController.handle);
 
-routesCar.post(
+carRoutes.post(
   '/images/:id',
   ensureAuthenticated,
   ensureAdmin,
@@ -44,4 +44,4 @@ routesCar.post(
 )
 
 
-export { routesCar }
+export { carRoutes }

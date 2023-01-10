@@ -6,27 +6,27 @@ import { DevolutionRentalController } from "@modules/rentals/useCases/devolution
 import { ListRentalsByUserController } from "@modules/rentals/useCases/listRentals/ListRentalsByUserController";
 
 
-const routesRental = Router()
+const rentalRoutes = Router()
 
 const createRentalController = new CreateRentalController();
 const devolutionRentalController = new DevolutionRentalController();
 const listRentalsByUserController = new ListRentalsByUserController();
 
 
-routesRental.post(
+rentalRoutes.post(
   "/",
   ensureAuthenticated,
   createRentalController.handle);
 
-routesRental.post(
+rentalRoutes.post(
   "/devolution/:id",
   ensureAuthenticated,
   devolutionRentalController.handle);
 
-routesRental.get(
+rentalRoutes.get(
   "/user",
   ensureAuthenticated,
   listRentalsByUserController.handle
 )
 
-export { routesRental }
+export { rentalRoutes }
